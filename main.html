@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pisacz</title>
+    <style>
+        * {
+            font-family: "Calibri", sans-serif;
+            box-sizing: border-box;
+        }
+        body {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .wynikT {
+            width: 100%;
+        }
+        th {
+            text-align: center;
+            font-weight: bold;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+        }
+        td {
+            padding: 10px;
+            vertical-align: top;
+        }
+        th, td {
+            border: 1px solid #ddd;
+        }
+        table {
+            border-spacing: 0;
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+            background-color: white;
+        }
+        hr {
+            margin: 10px 0;
+            border: none;
+            border-top: 1px solid #ddd;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 5px;
+        }
+        input[type="number"] {
+            width: 60%;
+            padding: 5px;
+            margin-bottom: 5px;
+        }
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+        label {
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+        #wynik {
+            white-space: pre-wrap;
+            background-color: #e9e9e9;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #ankieta {
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Pierwszy rząd -->
+    <table>
+        <tr>
+            <th>Dane</th>
+            <th>Budowa</th>
+            <th>Kondycja</th>
+            <th>Temperatura</th>
+            <th>Liczba oddechów</th>
+            <th>Oddech</th>
+            <th>Błony śluzowe</th>
+        </tr>
+        <tr>
+            <td>
+                <label>Imię:<br><input type="text" id="imie"></label>
+                <label>Nr. chipa:<br><input type="text" id="chip"></label>
+                <label>Rasa:<br><input type="text" id="rasa"></label>
+            </td>
+            <td>
+                <label><input type="radio" name="budowa" value="prawidłowa" checked>prawidłowa</label>
+                <label><input type="radio" name="budowa" value="nieprawidłowa">nieprawidłowa</label>
+            </td>
+            <td>
+                <label><input type="radio" name="kondycja" value="bardzo dobra" checked>bardzo dobra</label>
+                <label><input type="radio" name="kondycja" value="dobra">dobra</label>
+                <label><input type="radio" name="kondycja" value="średnia">średnia</label>
+                <label><input type="radio" name="kondycja" value="zła">zła</label>
+            </td>
+            <td>
+                <label><input type="number" id="temp" value="38.5" step="0.1"> °C</label>
+            </td>
+            <td>
+                <label><input type="number" id="odNaM" value="20"> /min</label>
+            </td>
+            <td>
+                <label><input type="radio" name="oddech1" value="miarowy" checked>miarowy</label>
+                <label><input type="radio" name="oddech1" value="niemiarowy">niemiarowy</label><hr>
+                <label><input type="radio" name="oddech2" value="nieutrudniony" checked>nieutrudniony</label>
+                <label><input type="radio" name="oddech2" value="utrudniony">utrudniony</label><hr>
+                <label><input type="radio" name="oddech3" value="piersiowo-brzuszny" checked>piersiowo-brzuszny</label>
+                <label><input type="radio" name="oddech3" value="piersiowy">piersiowy</label>
+                <label><input type="radio" name="oddech3" value="brzuszny">brzuszny</label>
+            </td>
+            <td>
+                <label><input type="radio" name="blony" value="różowe" checked>różowe</label>
+                <label><input type="radio" name="blony" value="blade">blade</label>
+                <label><input type="radio" name="blony" value="zaczerwienione">zaczerwienione</label>
+                <label><input type="radio" name="blony" value="sine">sine</label>
+                <label><input type="radio" name="blony" value="zażółcone">zażółcone</label>
+                <label><input type="radio" name="blony" value="blado-różowe">blado-różowe</label>
+            </td>
+        </tr>
+    </table>
+    <!-- Drugi rząd -->
+    <table>
+        <tr>
+            <th>Węzły chłonne</th>
+            <th>Okrywa włosowa</th>
+            <th>Skóra</th>
+            <th>Źrenice</th>
+            <th>Zęby</th>
+            <th>Brzuch</th>
+        </tr>
+        <tr>
+            <td>
+                <label><input type="radio" name="wezly" value="niepowiększone" checked>niepowiększone</label>
+                <label><input type="radio" name="wezly" value="powiększone">powiększone</label>
+            </td>
+            <td>
+                <label><input type="radio" name="okrywa" value="prawidłowa" checked>prawidłowa</label>
+                <label><input type="radio" name="okrywa" value="matowa">matowa</label>
+                <label><input type="radio" name="okrywa" value="przerzedzona">przerzedzona</label>
+                <label><input type="radio" name="okrywa" value="przesuszona">przesuszona</label>
+                <label><input type="radio" name="okrywa" value="przetłuszczona">przetłuszczona</label>
+            </td>
+            <td>
+                <label><input type="radio" name="skora" value="elastyczna" checked>elastyczna</label>
+                <label><input type="radio" name="skora" value="zaczerwieniona">zaczerwieniona</label>
+                <label><input type="radio" name="skora" value="przekrwiona">przekrwiona</label>
+                <label><input type="radio" name="skora" value="wybroczyny">wybroczyny</label>
+                <label><input type="radio" name="skora" value="sinica ogólna">sinica ogólna</label>
+                <label><input type="radio" name="skora" value="sinica miejscowa">sinica miejscowa</label>
+                <label><input type="radio" name="skora" value="zażółcona">zażółcona</label>
+                <label><input type="radio" name="skora" value="obrzęknięta">obrzęknięta</label>
+                <label><input type="radio" name="skora" value="przesuszona">przesuszona</label>
+                <label><input type="radio" name="skora" value="przetłuszczona">przetłuszczona</label>
+                <label><input type="radio" name="skora" value="zgrubiała">zgrubiała</label>
+                <label><input type="radio" name="skora" value="pergaminowa">pergaminowa</label>
+            </td>
+            <td>
+                <label><input type="radio" name="zrenice1" value="symetryczne" checked>symetryczne</label>
+                <label><input type="radio" name="zrenice1" value="niesymetryczne">niesymetryczne</label><hr>
+                <label><input type="radio" name="zrenice2" value="reaktywne" checked>reaktywne</label>
+                <label><input type="radio" name="zrenice2" value="niereaktywne">niereaktywne</label>
+            </td>
+            <td>
+                <label><input type="radio" name="zeby" value="brak osadu" checked>brak osadu</label>
+                <label><input type="radio" name="zeby" value="osad nazębny">osad nazębny</label><hr>
+                <label><input type="checkbox" id="zeby_kam">kamień nazębny</label>
+                <label><input type="checkbox" id="zeby_zap">zapalenie przyzębia</label>
+            </td>
+            <td>
+                <label><input type="radio" name="brzuch1" value="miękki" checked>miękki</label>
+                <label><input type="radio" name="brzuch1" value="twardy">twardy</label><hr>
+                <label><input type="radio" name="brzuch2" value="niebolesny" checked>niebolesny</label>
+                <label><input type="radio" name="brzuch2" value="bolesny">bolesny</label>
+            </td>
+        </tr>
+    </table>
+    <!-- Wynik -->
+    <table class="wynikT">
+        <tr>
+            <td>
+                <p id="wynik"></p>
+            </td>
+        </tr>
+    </table>
+    <button onclick="kopiujWynik()">Kopiuj wynik</button>
+    <a  id="ankieta" href="https://forms.office.com/r/k2JHJq883X" target="_blank"><button>Oceń program</button></a>
+    <script>
+        var dane = {
+            imie: "",
+            chip: "",
+            rasa: "",
+            budowa: "prawidłowa",
+            kondycja: "bardzo dobra",
+            temp: "38.5",
+            odNaM: "20",
+            oddech1: "miarowy",
+            oddech2: "nieutrudniony",
+            oddech3: "piersiowo-brzuszny",
+            blony: "różowe",
+            wezly: "niepowiększone",
+            okrywa: "prawidłowa",
+            skora: "elastyczna",
+            zrenice1: "symetryczne",
+            zrenice2: "reaktywne",
+            zeby: "brak osadu",
+            zeby_kam: false,
+            zeby_zap: false,
+            brzuch1: "miękki",
+            brzuch2: "niebolesny"
+        };
+        var dane2 = {
+            imie: "",
+            chip: "",
+            rasa: "",
+            budowa: "prawidłowa",
+            kondycja: "bardzo dobra",
+            temp: "38.5",
+            odNaM: "20",
+            oddech1: "miarowy",
+            oddech2: "nieutrudniony",
+            oddech3: "piersiowo-brzuszny",
+            blony: "różowe",
+            wezly: "niepowiększone",
+            okrywa: "prawidłowa",
+            skora: "elastyczna",
+            zrenice1: "symetryczne",
+            zrenice2: "reaktywne",
+            zeby: "brak osadu",
+            zeby_kam: false,
+            zeby_zap: false,
+            brzuch1: "miękki",
+            brzuch2: "niebolesny"
+        };
+
+        function aktualizujWynik() {
+            var opis = `Imię: ${dane2.imie}\nNr. chipa: ${dane2.chip}\nRasa: ${dane2.rasa}\nOpis badania klinicznego:\nBudowa ciała ${dane2.budowa}. Kondycja ${dane2.kondycja}. Temperatura ${dane2.temp}°C. ${dane2.odNaM} oddechów na minutę. Oddech ${dane2.oddech1}, ${dane2.oddech2}, ${dane2.oddech3}. Błony śluzowe ${dane2.blony}. Zęby ${dane2.zeby}${dane2.zeby_kam ? ', kamień nazębny' : ''}${dane2.zeby_zap ? ', zapalenie przyzębia' : ''}. Węzły chłonne ${dane2.wezly}. Okrywa włosowa ${dane2.okrywa}. Skóra ${dane2.skora}. Źrenice ${dane2.zrenice1}, ${dane2.zrenice2}. Brzuch ${dane2.brzuch1}, ${dane2.brzuch2}`;
+            document.getElementById('wynik').innerHTML = opis;
+        }
+
+        function kopiujWynik() {
+            var wynik = document.getElementById('wynik');
+            var textarea = document.createElement('textarea');
+            textarea.value = wynik.textContent;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+        }
+
+        document.querySelectorAll('input').forEach(function(input) {
+            input.addEventListener('change', function() {
+                if (this.type === 'radio') {
+                    dane[this.name] = this.value;
+                    dane2[this.name] = `<span style="background-color: yellow;">${dane[this.name]}</span>`;
+                } else if (this.type === 'checkbox') {
+                    dane[this.id] = this.checked;
+                    dane2[this.id] = this.checked;
+                } else if (this.type === 'text' || this.type === 'number') {
+                    dane[this.id] = this.value;
+                    dane2[this.id] = `<span style="background-color: yellow;">${dane[this.id]}</span>`;
+                }
+                aktualizujWynik();
+            });
+            input.addEventListener('mouseover', function() {
+                if (this.type === 'radio') {
+                    dane2[this.name] = `<span style="background-color: yellow;">${dane[this.name]}</span>`;
+                } else if (this.type === 'text' || this.type === 'number') {
+                    dane2[this.id] = `<span style="background-color: yellow;">${dane[this.id]}</span>`;
+                }
+                aktualizujWynik();
+            });
+            input.addEventListener('mouseout', function() {
+                if (this.type === 'radio') {
+                    dane2[this.name] = dane[this.name];
+                } else if (this.type === 'text' || this.type === 'number') {
+                    dane2[this.id] = dane[this.id];
+                }
+                aktualizujWynik();
+            });
+        });
+
+        aktualizujWynik();
+    </script>
+</body>
+</html>
